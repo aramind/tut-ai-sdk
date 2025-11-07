@@ -1,11 +1,11 @@
+import { ai } from "@/app/constants/ai";
 import { streamText } from "ai";
-import { google } from "@ai-sdk/google";
 
 export async function POST(req: Request) {
   try {
     const { prompt } = await req.json();
     const result = streamText({
-      model: google("gemini-2.5-flash"),
+      model: ai.model,
       prompt,
     });
     return result.toUIMessageStreamResponse();
