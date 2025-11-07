@@ -1,11 +1,12 @@
 import { generateText } from "ai";
-import { anthropic } from "@ai-sdk/anthropic";
+import { google } from "@ai-sdk/google";
 
 export async function POST(req: Request) {
   try {
+    console.log("Google key:", process.env.GOOGLE_GENERATIVE_AI_API_KEY);
     const { prompt } = await req.json();
     const { text } = await generateText({
-      model: anthropic("claude-3-haiku-20240307"),
+      model: google("gemini-2.5-flash"),
       prompt,
     });
     return Response.json({ text });
