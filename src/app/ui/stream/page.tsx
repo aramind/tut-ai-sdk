@@ -1,6 +1,7 @@
 "use client";
 
 import { useCompletion } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
 
 export default function StreamPage() {
   const {
@@ -19,7 +20,11 @@ export default function StreamPage() {
       {error && <div className="text-red-500 mb-4">{error.message}</div>}
       {isLoading && !completion && <div>Loading...</div>}
 
-      {completion && <div className="whitespace-pre-wrap">{completion}</div>}
+      {completion && (
+        <div className="whitespace-pre-wrap">
+          <ReactMarkdown>{completion}</ReactMarkdown>
+        </div>
+      )}
 
       <form
         onSubmit={(e) => {
